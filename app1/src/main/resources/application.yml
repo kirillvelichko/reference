@@ -1,0 +1,13 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          filter:
+            CommonsRequestLoggingFilter: debug
+
+grpc:
+  port: 9091
