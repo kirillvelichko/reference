@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk15:aarch64-ubuntu-jre-15.0.2_7
+FROM adoptopenjdk:15.0.2_7-jre-hotspot
 ARG JAR=build/libs/app2.jar
 RUN mkdir /opt/app
 COPY ${JAR} /opt/app
