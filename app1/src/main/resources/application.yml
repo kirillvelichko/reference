@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: ${HTTP_PORT:8081}
 
 logging:
   level:
@@ -10,4 +10,4 @@ logging:
             CommonsRequestLoggingFilter: debug
 
 grpc:
-  port: 9091
+  port: ${GRPC_PORT:9091}
