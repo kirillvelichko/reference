@@ -1,13 +1,5 @@
 server:
   port: ${HTTP_PORT:8082}
 
-logging:
-  level:
-    org:
-      springframework:
-        web:
-          filter:
-            CommonsRequestLoggingFilter: debug
-
 grpc:
   port: ${GRPC_PORT:9092}
