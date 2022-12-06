@@ -2,9 +2,9 @@ package my.project.integration.grpc;
 
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
-import my.project.integration.grpc.gen.TestRequest;
-import my.project.integration.grpc.gen.TestResponse;
-import my.project.integration.grpc.gen.TestServiceGrpc;
+import my.project.gen.grpc.TestRequest;
+import my.project.gen.grpc.TestResponse;
+import my.project.gen.grpc.TestServiceGrpc;
 import org.lognet.springboot.grpc.GRpcService;
 
 @GRpcService
