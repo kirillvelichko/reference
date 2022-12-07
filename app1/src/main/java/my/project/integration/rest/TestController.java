@@ -24,7 +24,7 @@ public class TestController {
     @GetMapping("/grpc")
     public String getGrpcTest() {
         var request = TestRequest.newBuilder()
-                .setMessage("grpc")
+                .setMessage("test")
                 .build();
         var response = testClient.test(request);
         return response.getMessage();
