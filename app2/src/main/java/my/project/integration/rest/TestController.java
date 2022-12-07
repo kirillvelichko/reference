@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("/")
-    public String getIndexPage(){
-        return "Test";
+    public String getIndex(){
+        return "App2";
+    }
+
+    @GetMapping("/test")
+    public String getTest() {
+        return "test app2";
     }
 }

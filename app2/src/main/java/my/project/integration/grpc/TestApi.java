@@ -13,9 +13,9 @@ public class TestApi extends TestServiceGrpc.TestServiceImplBase {
 
     @Override
     public void test(TestRequest request, StreamObserver<TestResponse> responseObserver) {
-        log.info("Test request has received");
+        log.info("TestService request has received");
         TestResponse response = TestResponse.newBuilder()
-                .setGreeting("Hi " + request.getFirstName())
+                .setMessage("App2 grpc " + request.getMessage())
                 .build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();

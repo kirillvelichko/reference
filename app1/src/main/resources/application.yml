@@ -3,3 +3,7 @@ server:
 
 grpc:
   port: ${GRPC_PORT:9091}
+  client:
+    app2:
+      hostname: ${APP2_SERVICE_HOST:localhost}
+      port: ${APP2_SERVICE_PORT_GRPC:9092}

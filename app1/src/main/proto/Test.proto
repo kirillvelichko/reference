@@ -7,10 +7,9 @@ service TestService {
 }
 
 message TestRequest {
-  string firstName = 1;
-  string lastName = 2;
+  string message = 1;
 }
 
 message TestResponse {
-  string greeting = 1;
+  string message = 1;
 }
