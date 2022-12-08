@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class TestClient {
+public class TestRpcClient {
     private final TestServiceBlockingStub testService;
 
     public TestResponse test(TestRequest request) {

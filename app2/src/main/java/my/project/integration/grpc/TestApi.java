@@ -13,7 +13,7 @@ public class TestApi extends TestServiceGrpc.TestServiceImplBase {
 
     @Override
     public void test(TestRequest request, StreamObserver<TestResponse> responseObserver) {
-        log.info("TestService request has received");
+        log.info("Invoked rpc method: TestService.test");
         TestResponse response = TestResponse.newBuilder()
                 .setMessage("App2 grpc " + request.getMessage())
                 .build();

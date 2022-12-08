@@ -1,29 +1,35 @@
 package my.project.configuration.grpc;
 
 import io.grpc.ManagedChannel;
-import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.AbstractStub;
 import lombok.RequiredArgsConstructor;
+import my.project.configuration.grpc.GrpcClientProperties.Host;
+import my.project.gen.grpc.TestServiceGrpc;
+import org.springframework.cloud.sleuth.brave.instrument.grpc.SpringAwareManagedChannelBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.function.Function;
+
 import static my.project.gen.grpc.TestServiceGrpc.TestServiceBlockingStub;
-import static my.project.gen.grpc.TestServiceGrpc.newBlockingStub;
+
 
 @Configuration
 @RequiredArgsConstructor
 public class GrpcClientConfiguration {
     private final GrpcClientProperties clientProperties;
+    private final SpringAwareManagedChannelBuilder channelBuilder;
 
     @Bean
-    public ManagedChannel app2ManagedChannel() {
-        var app2 = clientProperties.getApp2();
-        return ManagedChannelBuilder.forAddress(app2.getHostname(), app2.getPort())
-                .usePlaintext()
-                .build();
+    public TestServiceBlockingStub testServiceBlockingStub() {
+        return createStub(clientProperties.getApp2(), TestServiceGrpc::newBlockingStub);
     }
 
-    @Bean
-    public TestServiceBlockingStub testServiceBlockingStub(ManagedChannel app2ManagedChannel) {
-        return newBlockingStub(app2ManagedChannel);
+    private <T extends AbstractStub<T>> T createStub(Host host, Function<ManagedChannel, T> function) {
+        var managedChannel = channelBuilder
+                .forAddress(host.getHostname(), host.getPort())
+                .usePlaintext()
+                .build();
+        return function.apply(managedChannel);
     }
 }
