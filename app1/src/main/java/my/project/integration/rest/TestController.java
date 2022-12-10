@@ -3,7 +3,7 @@ package my.project.integration.rest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import my.project.gen.grpc.TestRequest;
-import my.project.integration.grpc.TestRpcClient;
+import my.project.integration.grpc.TestGrpcClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class TestController {
-    private final TestRpcClient testClient;
+    private final TestGrpcClient testGrpcClient;
 
     @GetMapping("/")
     public String getIndex() {
@@ -29,7 +29,7 @@ public class TestController {
         var request = TestRequest.newBuilder()
                 .setMessage("test")
                 .build();
-        var response = testClient.test(request);
+        var response = testGrpcClient.test(request);
         log.info("Received rpc response: " + response);
         return response.getMessage();
     }

@@ -16,7 +16,7 @@ import static my.project.gen.grpc.TestServiceGrpc.TestServiceBlockingStub;
 
 @Configuration
 @RequiredArgsConstructor
-public class GrpcClientConfiguration {
+public class GrpcClientConfig {
     private final GrpcClientProperties clientProperties;
     private final SpringAwareManagedChannelBuilder channelBuilder;
 
