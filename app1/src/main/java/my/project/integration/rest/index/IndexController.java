@@ -1,4 +1,4 @@
-package my.project.integration.rest;
+package my.project.integration.rest.index;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,17 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-public class TestController {
+public class IndexController {
     private final TestGrpcClient testGrpcClient;
 
     @GetMapping("/")
     public String getIndex() {
         return "App1";
-    }
-
-    @GetMapping("/test")
-    public String getTest() {
-        return "test app1";
     }
 
     @GetMapping("/grpc")

@@ -3,7 +3,7 @@ package my.project.configuration.grpc;
 import io.grpc.ManagedChannel;
 import io.grpc.stub.AbstractStub;
 import lombok.RequiredArgsConstructor;
-import my.project.configuration.grpc.GrpcClientProperties.Host;
+import my.project.domain.common.Host;
 import my.project.gen.grpc.TestServiceGrpc;
 import org.springframework.cloud.sleuth.brave.instrument.grpc.SpringAwareManagedChannelBuilder;
 import org.springframework.context.annotation.Bean;
@@ -13,11 +13,10 @@ import java.util.function.Function;
 
 import static my.project.gen.grpc.TestServiceGrpc.TestServiceBlockingStub;
 
-
 @Configuration
 @RequiredArgsConstructor
 public class GrpcClientConfig {
-    private final GrpcClientProperties clientProperties;
+    private final GrpcClientProps clientProperties;
     private final SpringAwareManagedChannelBuilder channelBuilder;
 
     @Bean
