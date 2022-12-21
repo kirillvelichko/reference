@@ -6,6 +6,7 @@ import my.project.integration.rest.user.mapper.UserMapper;
 import my.project.integration.rest.user.request.UserRequest;
 import my.project.integration.rest.user.response.UserResponse;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping("/user/getList")
-    public UserResponse getUsers(UserRequest request){
+    public UserResponse getUsers(@RequestBody UserRequest request){
         Optional<String> firstName = Optional.ofNullable(request.getFirstName());
         Optional<String> lastName = Optional.ofNullable(request.getLastName());
         var userList = userService.getUsers(firstName, lastName);

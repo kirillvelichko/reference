@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
-
 import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
@@ -26,23 +25,14 @@ public class UserClient {
 
     @PostConstruct
     private void init() {
-        headers = createHeaders();
-        url = createUrl();
+        url = restProperties.getUserListUrl();
+        headers = new HttpHeaders();
+        headers.setContentType(APPLICATION_JSON);
     }
 
     public Optional<UserResponse> getUsers(UserRequest requestBody) {
         HttpEntity<UserRequest> request = new HttpEntity<>(requestBody, headers);
         ResponseEntity<UserResponse> response = restTemplate.postForEntity(url, request, UserResponse.class);
         return Optional.ofNullable(response.getBody());
-    }
-
-    private HttpHeaders createHeaders() {
-        var httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(APPLICATION_JSON);
-        return httpHeaders;
-    }
-
-    private String createUrl() {
-        return restProperties.getApp2().getAddress() + "/user/getList";
     }
 }

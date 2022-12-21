@@ -10,4 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Data
 public class RestClientProps {
     private Host app2;
+
+    public String getUserListUrl() {
+        return app2.getHttpAddress() + "/user/getList";
+    }
 }

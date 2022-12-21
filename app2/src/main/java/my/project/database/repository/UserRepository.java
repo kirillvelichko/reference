@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
     String UPDATE_LAST_NAME_BY_FIRST_NAME = """
-            update user
+            update "user"
             set last_name = :lastName
             where first_name = :firstName
             """;

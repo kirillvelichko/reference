@@ -7,7 +7,7 @@ public class Host {
     private String hostname;
     private Integer port;
 
-    public String getAddress() {
-        return hostname + ":" + port;
+    public String getHttpAddress() {
+        return "http://" + hostname + ":" + port;
     }
 }
