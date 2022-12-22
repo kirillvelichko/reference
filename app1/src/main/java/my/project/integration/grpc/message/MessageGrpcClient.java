@@ -1,4 +1,4 @@
-package my.project.integration.grpc;
+package my.project.integration.grpc.message;
 
 import lombok.RequiredArgsConstructor;
 import my.project.gen.grpc.TestRequest;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class TestGrpcClient {
+public class MessageGrpcClient {
     private final TestServiceBlockingStub testService;
 
     public TestResponse test(TestRequest request) {

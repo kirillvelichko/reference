@@ -3,7 +3,7 @@ package my.project.configuration.grpc;
 import io.grpc.ManagedChannel;
 import io.grpc.stub.AbstractStub;
 import lombok.RequiredArgsConstructor;
-import my.project.domain.common.Host;
+import my.project.configuration.rest.Host;
 import my.project.gen.grpc.TestServiceGrpc;
 import org.springframework.cloud.sleuth.brave.instrument.grpc.SpringAwareManagedChannelBuilder;
 import org.springframework.context.annotation.Bean;

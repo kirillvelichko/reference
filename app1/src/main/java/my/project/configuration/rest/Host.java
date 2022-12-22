@@ -1,4 +1,4 @@
-package my.project.domain.common;
+package my.project.configuration.rest;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package my.project.integration.grpc;
+package my.project.integration.grpc.message;
 
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
@@ -13,9 +13,8 @@ public class TestApi extends TestServiceGrpc.TestServiceImplBase {
 
     @Override
     public void test(TestRequest request, StreamObserver<TestResponse> responseObserver) {
-        log.info("Invoked rpc method: TestService.test");
         TestResponse response = TestResponse.newBuilder()
-                .setMessage("App2 grpc " + request.getMessage())
+                .setMessage("App2 received: " + request.getMessage())
                 .build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();

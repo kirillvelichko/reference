@@ -1,7 +1,7 @@
 package my.project.configuration.grpc;
 
 import lombok.Data;
-import my.project.domain.common.Host;
+import my.project.configuration.rest.Host;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
