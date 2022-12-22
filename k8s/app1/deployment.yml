@@ -20,6 +20,8 @@ spec:
           env:
             - name: JAVA_TOOL_OPTIONS
               value: -XX:MaxRAMPercentage=80
+            - name: TZ
+              value: Europe/Moscow
             - name: HTTP_PORT
               value: "80"
             - name: GRPC_PORT
