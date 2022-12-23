@@ -18,8 +18,7 @@ public class MessageRpcClient {
         try {
             return testService.test(request);
         } catch (StatusRuntimeException e) {
-            Status status = Status.fromThrowable(e);
-            throw new SendingMessageException(status.getCode() + ": " + status.getDescription(), e);
+            throw new SendingMessageException(e);
         }
     }
 }
