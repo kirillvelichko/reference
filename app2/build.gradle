@@ -16,6 +16,7 @@ repositories {
 ext {
     springVersion = '2.7.6'
     tcVersion = '1.17.5'
+    shedlockVersion = '4.43.0'
 }
 
 dependencies {
@@ -24,6 +25,8 @@ dependencies {
     implementation "org.springframework.cloud:spring-cloud-starter-sleuth:3.1.5"
     implementation "io.zipkin.brave:brave-instrumentation-grpc:5.14.1"
     implementation "org.flywaydb:flyway-core:9.8.3"
+    implementation "net.javacrumbs.shedlock:shedlock-spring:${shedlockVersion}"
+    implementation "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlockVersion}"
     implementation "org.testcontainers:testcontainers:${tcVersion}"
     implementation "org.testcontainers:postgresql:${tcVersion}"
 
