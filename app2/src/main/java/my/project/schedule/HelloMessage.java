@@ -12,9 +12,9 @@ import static my.project.schedule.common.CronExpression.EVERY_10_MINUTES;
 public class HelloMessage {
 
     @Scheduled(cron = EVERY_10_MINUTES)
-    @SchedulerLock(name = "helloTask")
-    public void helloTask() {
-        log.info("Started helloTask");
-        log.info("Finished helloTask");
+    @SchedulerLock(name = "hello")
+    public void hello() {
+        log.info("Hello task started");
+        log.info("Hello task finished");
     }
 }
