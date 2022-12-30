@@ -1,4 +1,4 @@
-package my.project.configuration.storage;
+package my.project.configuration.database;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
