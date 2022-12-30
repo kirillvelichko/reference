@@ -19,8 +19,6 @@ public class Hello {
     @Scheduled(cron = EVERY_5_MINUTES)
     @SchedulerLock(name = "hello")
     public void hello() {
-        log.info("Hello task started");
-        runTask(helloService::hello);
-        log.info("Hello task finished");
+        runTask(helloService::hello, "Hello task");
     }
 }
