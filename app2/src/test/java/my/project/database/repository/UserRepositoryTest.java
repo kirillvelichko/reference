@@ -2,8 +2,6 @@ package my.project.database.repository;
 
 import my.project.IntegrationTest;
 import my.project.database.entity.UserEntity;
-import my.project.database.entity.user.Sex;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import static my.project.database.entity.user.Sex.*;
+import static my.project.database.entity.user.Sex.MALE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Transactional
@@ -31,7 +29,7 @@ class UserRepositoryTest extends IntegrationTest {
     }
 
     @Test
-    void getAllByFirstNameAndLastName_entityMapping() {
+    void getAllByFirstNameAndLastName_testMapping() {
         var userList = userRepository.getAllByFirstNameAndLastName("Petr", "Petrov");
         assertEquals(1, userList.size());
         var user = userList.get(0);
@@ -42,9 +40,10 @@ class UserRepositoryTest extends IntegrationTest {
         assertEquals(LocalDate.of(1990, 10, 15), user.getBirthDate());
         assertNotNull(user.getCreatedAt());
         assertNotNull(user.getUpdatedAt());
-    }
-
-    @Test
-    void updateLastNameByFirstName() {
+        var currentTime = LocalDateTime.now();
+        assertTrue(user.getUpdatedAt().isBefore(currentTime));
+        user.setFirstName("Alex");
+        userRepository.save(user);
+        assertTrue(user.getUpdatedAt().isAfter(currentTime));
     }
 }

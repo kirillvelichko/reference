@@ -1,3 +1,0 @@
--- insert into "user"(first_name, last_name, birth_date, created_at, updated_at)
--- values ('Petr', 'Petrov', TO_DATE('05.10.2020', 'DD.MM.YYYY'), TO_TIMESTAMP('05.10.2020', 'DD.MM.YYYY'),
---         TO_TIMESTAMP('05.10.2020', 'DD.MM.YYYY'));
