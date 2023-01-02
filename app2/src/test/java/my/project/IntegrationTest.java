@@ -1,10 +1,14 @@
 package my.project;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.DynamicPropertyRegistry;
+import org.springframework.test.context.DynamicPropertySource;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.ext.ScriptUtils;
+import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 
 @SpringBootTest
 public abstract class IntegrationTest {
-    /*
     private static final PostgreSQLContainer<?> postgresContainer;
 
     static {
@@ -13,6 +17,8 @@ public abstract class IntegrationTest {
                 .withUsername("username")
                 .withPassword("password");
         postgresContainer.start();
+
+        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(postgresContainer, ""), "db/user.sql");
     }
 
     @DynamicPropertySource
@@ -22,5 +28,4 @@ public abstract class IntegrationTest {
         registry.add("spring.datasource.password", postgresContainer::getPassword);
         registry.add("spring.datasource.driverClassName", postgresContainer::getDriverClassName);
     }
-    */
 }

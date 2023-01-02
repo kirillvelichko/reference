@@ -1,9 +1,9 @@
 create table app_config
 (
-    id          BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name        VARCHAR NOT NULL,
-    value       VARCHAR NOT NULL,
-    description VARCHAR NOT NULL
+    id          bigint primary key generated always as identity,
+    name        varchar not null,
+    value       varchar not null,
+    description varchar not null
 );
 
 create unique index app_config_name_idx on app_config (name);
