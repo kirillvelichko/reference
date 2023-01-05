@@ -10,10 +10,10 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity, Long> {
-    String UPDATE_LAST_NAME_BY_FIRST_NAME = """
-            update "user"
-            set last_name = :lastName
+    String DELETE_USERS_BY_FIRST_NAME_AND_LAST_NAME = """
+            delete from "user"
             where first_name = :firstName
+            and last_name = :lastName
             """;
 
     List<UserEntity> getAllByFirstName(String firstName);
@@ -23,6 +23,6 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
     List<UserEntity> getAllByFirstNameAndLastName(String firstName, String lastName);
 
     @Modifying
-    @Query(UPDATE_LAST_NAME_BY_FIRST_NAME)
-    boolean updateLastNameByFirstName(String lastName, String firstName);
+    @Query(DELETE_USERS_BY_FIRST_NAME_AND_LAST_NAME)
+    boolean deleteUsers(String firstName, String lastName);
 }

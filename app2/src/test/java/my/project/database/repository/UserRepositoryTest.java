@@ -46,4 +46,14 @@ class UserRepositoryTest extends IntegrationTest {
         userRepository.save(user);
         assertTrue(user.getUpdatedAt().isAfter(currentTime));
     }
+
+    @Test
+    void deleteUsers_testQuery() {
+        var userList = userRepository.getAllByFirstNameAndLastName("Petr", "Petrov");
+        assertEquals(1, userList.size());
+        var result = userRepository.deleteUsers("Petr", "Petrov");
+        assertTrue(result);
+        userList = userRepository.getAllByFirstNameAndLastName("Petr", "Petrov");
+        assertEquals(0, userList.size());
+    }
 }
