@@ -23,7 +23,7 @@ class DynamicPropsTest extends IntegrationTest {
     }
 
     @Test
-    void getValue_cacheRefresh() {
+    void getValue_testCacheRefresh() {
         assertEquals("Warmest regards.", dynamicProps.getValue(SIGNATURE));
         var appConfig = appConfigRepository.getByName(SIGNATURE.getName());
         appConfig.setValue("Kind regards.");

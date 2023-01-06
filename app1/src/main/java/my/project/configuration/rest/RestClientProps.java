@@ -11,6 +11,6 @@ public class RestClientProps {
     private Host app2;
 
     public String getUserListUrl() {
-        return app2.getHttpAddress() + "/user/getList";
+        return app2.getHttpAddress() + "/user/get/list";
     }
 }

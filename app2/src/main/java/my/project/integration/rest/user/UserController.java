@@ -17,7 +17,7 @@ public class UserController {
     private final UserService userService;
     private final UserMapper userMapper;
 
-    @PostMapping("/user/getList")
+    @PostMapping("/user/get/list")
     public UserResponse getUsers(@RequestBody UserRequest request){
         Optional<String> firstName = Optional.ofNullable(request.getFirstName());
         Optional<String> lastName = Optional.ofNullable(request.getLastName());

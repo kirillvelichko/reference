@@ -20,7 +20,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class UserClient {
+public class UserRestClient {
     private final RestTemplate restTemplate;
     private final RestClientProps restProperties;
     private HttpHeaders headers;

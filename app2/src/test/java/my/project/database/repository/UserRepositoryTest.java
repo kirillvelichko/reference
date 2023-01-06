@@ -29,7 +29,7 @@ class UserRepositoryTest extends IntegrationTest {
     }
 
     @Test
-    void getAllByFirstNameAndLastName_testMapping() {
+    void getAllByFirstNameAndLastName_testMapping() throws InterruptedException {
         var userList = userRepository.getAllByFirstNameAndLastName("Petr", "Petrov");
         assertEquals(1, userList.size());
         var user = userList.get(0);
@@ -43,6 +43,7 @@ class UserRepositoryTest extends IntegrationTest {
         var currentTime = LocalDateTime.now();
         assertTrue(user.getUpdatedAt().isBefore(currentTime));
         user.setFirstName("Alex");
+        Thread.sleep(1);
         userRepository.save(user);
         assertTrue(user.getUpdatedAt().isAfter(currentTime));
     }
