@@ -13,7 +13,8 @@
 - unit tests with junit and mockito
 
 ## k8s
-- deployments
-- services
+- deployment
+- service
+- configmap
 
 ## istio

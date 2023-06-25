@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
 plugins {
     id 'java'
     id 'io.freefair.lombok' version '6.5.0.3'
@@ -5,8 +7,14 @@ plugins {
     id 'io.github.lognet.grpc-spring-boot' version '4.9.1'
 }
 
-grpcSpringBoot {
-    protocVersion.set('3.21.7')
+group "my.project"
+version "SNAPSHOT"
+sourceCompatibility = '17'
+
+compileJava {
+    options.compilerArgs = [
+            '-Xlint:deprecation'
+    ]
 }
 
 repositories {
@@ -14,25 +22,33 @@ repositories {
 }
 
 ext {
-    springVersion = '2.7.6'
-    tcVersion = '1.17.5'
+    testContainersVersion = '1.17.5'
     shedlockVersion = '4.43.0'
 }
 
 dependencies {
-    implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
-    implementation "org.springframework.boot:spring-boot-starter-data-jdbc:${springVersion}"
-    implementation "org.springframework.cloud:spring-cloud-starter-sleuth:3.1.5"
-    implementation "io.zipkin.brave:brave-instrumentation-grpc:5.14.1"
-    implementation "org.flywaydb:flyway-core:9.8.3"
+    implementation platform(SpringBootPlugin.BOM_COORDINATES)
+    implementation platform("org.springframework.cloud:spring-cloud-dependencies:2021.0.5")
+
+    implementation "org.springframework.boot:spring-boot-starter-web:"
+    implementation "org.springframework.boot:spring-boot-starter-data-jdbc"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
     implementation "net.javacrumbs.shedlock:shedlock-spring:${shedlockVersion}"
     implementation "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlockVersion}"
-    implementation "org.testcontainers:testcontainers:${tcVersion}"
-    implementation "org.testcontainers:postgresql:${tcVersion}"
+    implementation "org.flywaydb:flyway-core"
+    runtimeOnly "org.postgresql:postgresql"
 
-    testImplementation "org.springframework.boot:spring-boot-starter-test:${springVersion}"
-    testImplementation "org.testcontainers:junit-jupiter:${tcVersion}"
-    runtimeOnly "org.postgresql:postgresql:42.5.1"
+    // db emulation
+    implementation "org.testcontainers:testcontainers:${testContainersVersion}"
+    implementation "org.testcontainers:postgresql:${testContainersVersion}"
+
+    // tracing
+    implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
+    implementation "io.zipkin.brave:brave-instrumentation-grpc"
+
+    // testing
+    testImplementation "org.springframework.boot:spring-boot-starter-test:"
+    testImplementation "org.testcontainers:junit-jupiter:${testContainersVersion}"
 }
 
 test {
