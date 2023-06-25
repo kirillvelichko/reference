@@ -1,8 +1,8 @@
 package my.project.domain.user;
 
 import lombok.RequiredArgsConstructor;
-import my.project.integration.rest.user.UserRestClient;
-import my.project.integration.rest.user.request.UserRequest;
+import my.project.integration.client.user.UserRestClient;
+import my.project.integration.client.user.request.UserRequest;
 import org.springframework.stereotype.Service;
 
 @Service

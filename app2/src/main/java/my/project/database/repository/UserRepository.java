@@ -4,6 +4,7 @@ import my.project.database.entity.UserEntity;
 import org.springframework.data.jdbc.repository.query.Modifying;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,5 +25,5 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     @Modifying
     @Query(DELETE_USERS_BY_FIRST_NAME_AND_LAST_NAME)
-    boolean deleteUsers(String firstName, String lastName);
+    boolean deleteUsers(@Param("firstName") String firstName, @Param("lastName") String lastName);
 }

@@ -3,9 +3,9 @@ package my.project.domain.message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import my.project.gen.grpc.TestResponse;
-import my.project.integration.grpc.message.MessageRpcClient;
-import my.project.integration.grpc.message.exception.SendingMessageException;
-import my.project.integration.grpc.message.mapper.MessageMapper;
+import my.project.integration.client.message.MessageRpcClient;
+import my.project.integration.client.message.exception.SendingMessageException;
+import my.project.integration.client.message.mapper.MessageMapper;
 import org.springframework.stereotype.Service;
 
 @Service
