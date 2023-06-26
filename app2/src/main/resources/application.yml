@@ -7,3 +7,7 @@ server:
 
 grpc:
   port: ${GRPC_PORT:9092}
+
+logging.level:
+  root: INFO
+  my.project: ${LOG_LEVEL:DEBUG}
