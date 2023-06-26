@@ -2,11 +2,23 @@ spring:
   application:
     name: App1
 
+logging.level:
+  root: INFO
+  my.project: ${LOG_LEVEL:DEBUG}
+
+management:
+  endpoint.health.probes.enabled: true
+  health:
+    livenessstate.enabled: true
+    readinessstate.enabled: true
+
 server:
   port: ${HTTP_PORT:8081}
+  shutdown: graceful
 
 grpc:
   port: ${GRPC_PORT:9091}
+  shutdown-grace: 30
   client:
     app2:
       hostname: ${APP2_SERVICE_HOST:localhost}
@@ -17,7 +29,3 @@ rest:
     app2:
       hostname: ${APP2_SERVICE_HOST:localhost}
       port: ${APP2_SERVICE_PORT_HTTP:8082}
-
-logging.level:
-  root: INFO
-  my.project: ${LOG_LEVEL:DEBUG}
