@@ -13,19 +13,19 @@ management:
     readinessstate.enabled: true
 
 server:
-  port: ${HTTP_PORT:8081}
+  port: ${HTTP_PORT:8080}
   shutdown: graceful
 
 grpc:
-  port: ${GRPC_PORT:9091}
+  port: ${GRPC_PORT:9090}
   shutdown-grace: 30
   client:
     app2:
       hostname: ${APP2_SERVICE_HOST:localhost}
-      port: ${APP2_SERVICE_PORT_GRPC:9092}
+      port: ${APP2_SERVICE_PORT_GRPC:9091}
 
 rest:
   client:
     app2:
       hostname: ${APP2_SERVICE_HOST:localhost}
-      port: ${APP2_SERVICE_PORT_HTTP:8082}
+      port: ${APP2_SERVICE_PORT_HTTP:8081}

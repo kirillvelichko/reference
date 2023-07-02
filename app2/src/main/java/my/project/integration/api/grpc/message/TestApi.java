@@ -13,6 +13,10 @@ public class TestApi extends TestServiceGrpc.TestServiceImplBase {
 
     @Override
     public void test(TestRequest request, StreamObserver<TestResponse> responseObserver) {
+        log.info("Received message: {}", request.getMessage());
+        if (request.getMessage().equals("Hello App2!")) {
+            throw new RuntimeException("exception text");
+        }
         TestResponse response = TestResponse.newBuilder()
                 .setMessage("App2 received: " + request.getMessage())
                 .build();

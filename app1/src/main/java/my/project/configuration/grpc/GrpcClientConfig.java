@@ -11,8 +11,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.function.Function;
 
-import static my.project.gen.grpc.TestServiceGrpc.TestServiceBlockingStub;
-
 @Configuration
 @RequiredArgsConstructor
 public class GrpcClientConfig {
@@ -20,8 +18,18 @@ public class GrpcClientConfig {
     private final SpringAwareManagedChannelBuilder channelBuilder;
 
     @Bean
-    public TestServiceBlockingStub testServiceBlockingStub() {
+    public TestServiceGrpc.TestServiceBlockingStub testServiceBlockingStub() {
         return createStub(clientProperties.getApp2(), TestServiceGrpc::newBlockingStub);
+    }
+
+    @Bean
+    public TestServiceGrpc.TestServiceFutureStub testServiceFutureStub() {
+        return createStub(clientProperties.getApp2(), TestServiceGrpc::newFutureStub);
+    }
+
+    @Bean
+    public TestServiceGrpc.TestServiceStub testServiceStub() {
+        return createStub(clientProperties.getApp2(), TestServiceGrpc::newStub);
     }
 
     private <T extends AbstractStub<T>> T createStub(Host host, Function<ManagedChannel, T> function) {

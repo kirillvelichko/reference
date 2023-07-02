@@ -14,6 +14,7 @@ public class MessageController {
 
     @GetMapping("/message")
     public String getGrpcTest() {
-        return messageService.sendMessage("message from App1");
+        messageService.sendMessageAsync("Hello App2!");
+        return messageService.sendMessage("Some new message.");
     }
 }
