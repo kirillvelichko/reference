@@ -1,20 +1,26 @@
-## app1
+# Blueprint
+
+Template for a Java microservice application based on Spring Boot.
+
+### app1
 - rest client
 - grpc client
-- integration tests with junit and spring mock rest server
+- integration tests
+  - spring mock rest server
 
-## app2
+### app2
 - rest api
 - grpc api
 - scheduler
-- cache for configuration table
-- db with spring data jdbc
-- integration tests with junit and testcontainers
-- unit tests with junit and mockito
+- cache
+- spring data jdbc
+- unit tests
+  - junit
+  - mockito
+- integration tests
+  - testcontainers
 
-## k8s
+### k8s
 - deployment
 - service
 - configmap
-
-## istio
