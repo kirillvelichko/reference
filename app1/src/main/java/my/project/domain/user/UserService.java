@@ -2,8 +2,8 @@ package my.project.domain.user;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import my.project.integration.client.user.UserRestClient;
-import my.project.integration.client.user.request.UserRequest;
+import my.project.integration.client.rest.user.UserClient;
+import my.project.integration.client.rest.user.request.UserRequest;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 @RequiredArgsConstructor
 public class UserService {
-    private final UserRestClient userClient;
+    private final UserClient userClient;
 
     public String getUser(String firstName, String lastName) {
         var request = new UserRequest();

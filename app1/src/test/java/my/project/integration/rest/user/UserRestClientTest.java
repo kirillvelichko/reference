@@ -3,9 +3,9 @@ package my.project.integration.rest.user;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import my.project.IntegrationTest;
-import my.project.integration.client.user.UserRestClient;
-import my.project.integration.client.user.request.UserRequest;
-import my.project.integration.client.user.response.UserResponse;
+import my.project.integration.client.rest.user.UserClient;
+import my.project.integration.client.rest.user.request.UserRequest;
+import my.project.integration.client.rest.user.response.UserResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 class UserRestClientTest extends IntegrationTest {
     @Autowired
-    private UserRestClient userClient;
+    private UserClient userClient;
     @Autowired
     private RestTemplate restTemplate;
     private MockRestServiceServer mockServer;

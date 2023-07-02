@@ -1,14 +1,13 @@
 package my.project.configuration.dynamic;
 
 import my.project.IntegrationTest;
-import my.project.configuration.database.AppDynamicProps;
 import my.project.database.repository.AppConfigRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import static my.project.configuration.database.Property.SIGNATURE;
+import static my.project.configuration.dynamic.Property.SIGNATURE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Transactional
