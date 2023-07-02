@@ -3,17 +3,17 @@ package my.project.integration.client.grpc.message.callback;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import my.project.domain.message.MessageService;
 import my.project.gen.grpc.TestResponse;
-import org.springframework.stereotype.Component;
 
-@Component
 @RequiredArgsConstructor
 @Slf4j
 public class MessageCallback implements StreamObserver<TestResponse> {
+    private final MessageService messageService;
 
     @Override
     public void onNext(TestResponse response) {
-        log.info("Received message: {}", response.getMessage());
+        messageService.processResponse(response.getMessage());
     }
 
     @Override

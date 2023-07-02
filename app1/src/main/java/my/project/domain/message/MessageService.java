@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class MessageService {
     private final MessageBlockingClient messageClient;
     private final MessageAsyncClient messageAsyncClient;
-    private final MessageCallback messageCallback;
 
     public String sendMessage(String messageText) {
         String responseMessage;
@@ -29,6 +28,10 @@ public class MessageService {
 
     public void sendMessageAsync(String messageText) {
         log.info("Sending message: {}", messageText);
-        messageAsyncClient.test(messageText, messageCallback);
+        messageAsyncClient.test(messageText, new MessageCallback(this));
+    }
+
+    public void processResponse(String responseMessage) {
+        log.info("Received message: {}", responseMessage);
     }
 }
