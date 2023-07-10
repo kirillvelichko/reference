@@ -14,7 +14,6 @@ import javax.annotation.Nonnull;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 @Configuration
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ public class CallbackExecutorConfig {
 
     @Bean
     public Executor callbackExecutor() {
-        ThreadFactory threadFactory = new ThreadFactoryBuilder()
+        var threadFactory = new ThreadFactoryBuilder()
                 .setNameFormat("callback-exec-%d")
                 .build();
         executor = new LazyTraceExecutor(beanFactory, Executors.newCachedThreadPool(threadFactory));
