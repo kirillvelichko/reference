@@ -17,7 +17,7 @@ import java.util.function.Function;
 public class GrpcClientConfig {
     private final GrpcClientProps clientProperties;
     private final SpringAwareManagedChannelBuilder channelBuilder;
-    private final Executor callbackExecutor;
+    private final Executor grpcExecutor;
 
     @Bean
     public TestServiceGrpc.TestServiceBlockingStub testServiceBlockingStub() {
@@ -37,7 +37,7 @@ public class GrpcClientConfig {
     private <T extends AbstractStub<T>> T createStub(Host host, Function<ManagedChannel, T> function) {
         var managedChannel = channelBuilder
                 .forAddress(host.getHostname(), host.getPort())
-                .executor(callbackExecutor)
+                .executor(grpcExecutor)
                 .usePlaintext()
                 .build();
         return function.apply(managedChannel);

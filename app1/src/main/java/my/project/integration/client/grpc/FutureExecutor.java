@@ -1,34 +1,19 @@
-package my.project.configuration.grpc;
+package my.project.integration.client.grpc;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.cloud.sleuth.instrument.async.LazyTraceExecutor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Nonnull;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
-@Configuration
+@Component
 @RequiredArgsConstructor
-public class CallbackExecutorConfig {
-    private final BeanFactory beanFactory;
-    private Executor executor;
-
-    @Bean
-    public Executor callbackExecutor() {
-        var threadFactory = new ThreadFactoryBuilder()
-                .setNameFormat("callback-exec-%d")
-                .build();
-        executor = new LazyTraceExecutor(beanFactory, Executors.newCachedThreadPool(threadFactory));
-        return executor;
-    }
+public class FutureExecutor {
+    private final Executor grpcExecutor;
 
     public <T> CompletableFuture<T> exec(ListenableFuture<T> listenableFuture) {
         CompletableFuture<T> completableFuture = new CompletableFuture<>();
@@ -43,7 +28,7 @@ public class CallbackExecutorConfig {
                 completableFuture.completeExceptionally(t);
             }
         };
-        Futures.addCallback(listenableFuture, callback, executor);
+        Futures.addCallback(listenableFuture, callback, grpcExecutor);
         return completableFuture;
     }
 }
