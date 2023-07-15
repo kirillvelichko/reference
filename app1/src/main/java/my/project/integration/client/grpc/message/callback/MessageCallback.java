@@ -4,15 +4,15 @@ import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import my.project.domain.message.MessageService;
-import my.project.gen.grpc.TestResponse;
+import my.project.gen.grpc.MessageResponse;
 
 @RequiredArgsConstructor
 @Slf4j
-public class MessageCallback implements StreamObserver<TestResponse> {
+public class MessageCallback implements StreamObserver<MessageResponse> {
     private final MessageService messageService;
 
     @Override
-    public void onNext(TestResponse response) {
+    public void onNext(MessageResponse response) {
         messageService.processResponse(response.getMessage());
     }
 

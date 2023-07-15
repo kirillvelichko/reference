@@ -20,7 +20,7 @@ public class MessageService {
     public String sendMessage(String messageText) {
         String responseMessage;
         try {
-            responseMessage = messageClient.test(messageText);
+            responseMessage = messageClient.getMessage(messageText);
         } catch (SendingMessageException e) {
             log.error("Sending message error", e);
             return "Failed to send message";
@@ -35,11 +35,11 @@ public class MessageService {
     }
 
     private void sendWithAsyncClient(String messageText) {
-        messageAsyncClient.test(messageText, new MessageCallback(this));
+        messageAsyncClient.getMessage(messageText, new MessageCallback(this));
     }
 
     private void sendWithFutureClient(String messageText) {
-        messageFutureClient.test(messageText).handle((response, throwable) -> {
+        messageFutureClient.getMessage(messageText).handle((response, throwable) -> {
             if (throwable != null) {
                 log.error("Exception while sending message, cause: {}", throwable.getMessage());
                 return null;

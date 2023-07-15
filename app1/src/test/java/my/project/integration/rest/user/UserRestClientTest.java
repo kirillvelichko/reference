@@ -48,7 +48,7 @@ class UserRestClientTest extends IntegrationTest {
     @Test
     void getUsers_testOkResponseMapping() throws URISyntaxException, JsonProcessingException {
         var responseBody = createOkResponseBody();
-        mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://localhost:8082/user/get/list")))
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI("http://localhost:8081/user/get/list")))
                 .andExpect(method(POST))
                 .andRespond(withStatus(OK)
                         .contentType(APPLICATION_JSON)

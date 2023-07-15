@@ -1,7 +1,7 @@
 package my.project.integration.client.grpc.message;
 
 import lombok.RequiredArgsConstructor;
-import my.project.gen.grpc.TestResponse;
+import my.project.gen.grpc.MessageResponse;
 import my.project.gen.grpc.TestServiceGrpc;
 import my.project.integration.client.grpc.FutureExecutor;
 import my.project.integration.client.grpc.message.mapper.MessageMapper;
@@ -16,9 +16,9 @@ public class MessageFutureClient {
     private final MessageMapper messageMapper;
     private final FutureExecutor futureExecutor;
 
-    public CompletableFuture<TestResponse> test(String messageText) {
+    public CompletableFuture<MessageResponse> getMessage(String messageText) {
         var request = messageMapper.toRequest(messageText);
-        var future = testService.test(request);
+        var future = testService.getMessage(request);
         return futureExecutor.exec(future);
     }
 }

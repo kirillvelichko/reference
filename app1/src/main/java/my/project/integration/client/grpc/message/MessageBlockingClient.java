@@ -2,7 +2,7 @@ package my.project.integration.client.grpc.message;
 
 import io.grpc.StatusRuntimeException;
 import lombok.RequiredArgsConstructor;
-import my.project.gen.grpc.TestResponse;
+import my.project.gen.grpc.MessageResponse;
 import my.project.gen.grpc.TestServiceGrpc.TestServiceBlockingStub;
 import my.project.integration.client.grpc.message.exception.SendingMessageException;
 import my.project.integration.client.grpc.message.mapper.MessageMapper;
@@ -14,11 +14,11 @@ public class MessageBlockingClient {
     private final TestServiceBlockingStub testService;
     private final MessageMapper messageMapper;
 
-    public String test(String messageText) throws SendingMessageException {
+    public String getMessage(String messageText) throws SendingMessageException {
         var request = messageMapper.toRequest(messageText);
-        TestResponse response;
+        MessageResponse response;
         try {
-            response = testService.test(request);
+            response = testService.getMessage(request);
         } catch (StatusRuntimeException e) {
             throw new SendingMessageException(e);
         }
