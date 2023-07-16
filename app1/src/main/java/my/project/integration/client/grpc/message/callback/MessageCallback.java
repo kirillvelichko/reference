@@ -18,11 +18,11 @@ public class MessageCallback implements StreamObserver<MessageResponse> {
 
     @Override
     public void onError(Throwable e) {
-        log.error("Exception while processing MessageCallback, cause: {}", e.getMessage());
+        log.error("Exception while getting a message", e);
     }
 
     @Override
     public void onCompleted() {
-        log.info("MessageCallback completed");
+        log.info("Completed");
     }
 }

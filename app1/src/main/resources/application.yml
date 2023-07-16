@@ -5,6 +5,7 @@ spring:
 logging.level:
   root: INFO
   my.project: ${LOG_LEVEL:DEBUG}
+  org.springframework.web.filter.CommonsRequestLoggingFilter: ${LOG_LEVEL:DEBUG}
 
 management:
   endpoint.health.probes.enabled: true

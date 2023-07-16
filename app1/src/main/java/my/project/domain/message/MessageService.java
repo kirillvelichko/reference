@@ -6,7 +6,7 @@ import my.project.integration.client.grpc.message.MessageAsyncClient;
 import my.project.integration.client.grpc.message.MessageBlockingClient;
 import my.project.integration.client.grpc.message.MessageFutureClient;
 import my.project.integration.client.grpc.message.callback.MessageCallback;
-import my.project.integration.client.grpc.message.exception.SendingMessageException;
+import my.project.integration.client.grpc.message.exception.GrpcIntegrationException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,31 +17,27 @@ public class MessageService {
     private final MessageAsyncClient messageAsyncClient;
     private final MessageFutureClient messageFutureClient;
 
-    public String sendMessage(String messageText) {
+    public String getMessage(String messageText) {
         String responseMessage;
         try {
             responseMessage = messageClient.getMessage(messageText);
-        } catch (SendingMessageException e) {
-            log.error("Sending message error", e);
+        } catch (GrpcIntegrationException e) {
+            log.error("Exception while getting a message", e);
             return "Failed to send message";
         }
         return responseMessage;
     }
 
-    public void sendMessageAsync(String messageText) {
+    public void sendWithAsyncClient(String messageText) {
         log.info("Sending message: {}", messageText);
-        sendWithAsyncClient(messageText);
-        sendWithFutureClient(messageText);
-    }
-
-    private void sendWithAsyncClient(String messageText) {
         messageAsyncClient.getMessage(messageText, new MessageCallback(this));
     }
 
-    private void sendWithFutureClient(String messageText) {
+    public void sendWithFutureClient(String messageText) {
+        log.info("Sending message: {}", messageText);
         messageFutureClient.getMessage(messageText).handle((response, throwable) -> {
             if (throwable != null) {
-                log.error("Exception while sending message, cause: {}", throwable.getMessage());
+                log.error("Exception while getting a message", throwable);
                 return null;
             }
             log.info("Received response (future): {}", response.getMessage());

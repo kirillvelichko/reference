@@ -12,9 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class MessageController {
     private final MessageService messageService;
 
-    @GetMapping("/message")
-    public String getGrpcTest() {
-        messageService.sendMessageAsync("Hello App2!");
-        return messageService.sendMessage("Some new message.");
+    @GetMapping("/message1")
+    public String getMessage1() {
+        log.info(messageService.getMessage("Hello message1"));
+        return "Blocking client";
+    }
+
+    @GetMapping("/message2")
+    public String getMessage2() {
+        messageService.sendWithAsyncClient("Hello message2");
+        return "Async client";
+    }
+
+    @GetMapping("/message3")
+    public String getMessage3() {
+        messageService.sendWithFutureClient("Hello message3");
+        return "Future client";
     }
 }
