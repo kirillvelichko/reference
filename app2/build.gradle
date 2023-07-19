@@ -12,9 +12,7 @@ version "SNAPSHOT"
 sourceCompatibility = '17'
 
 compileJava {
-    options.compilerArgs = [
-            '-Xlint:deprecation'
-    ]
+    options.compilerArgs << '-Xlint:deprecation'
 }
 
 repositories {
@@ -22,7 +20,7 @@ repositories {
 }
 
 ext {
-    testContainersVersion = '1.17.5'
+    testContainersVersion = '1.17.6'
     shedlockVersion = '4.43.0'
 }
 
@@ -30,25 +28,26 @@ dependencies {
     implementation platform(SpringBootPlugin.BOM_COORDINATES)
     implementation platform("org.springframework.cloud:spring-cloud-dependencies:2021.0.5")
 
-    implementation "org.springframework.boot:spring-boot-starter-web:"
-    implementation "org.springframework.boot:spring-boot-starter-data-jdbc"
-    implementation "org.springframework.boot:spring-boot-starter-actuator"
-    implementation "net.javacrumbs.shedlock:shedlock-spring:${shedlockVersion}"
-    implementation "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlockVersion}"
-    implementation "org.flywaydb:flyway-core"
-    runtimeOnly "org.postgresql:postgresql"
+    implementation("org.springframework.boot:spring-boot-starter-web:")
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.kafka:spring-kafka")
+    implementation("net.javacrumbs.shedlock:shedlock-spring:${shedlockVersion}")
+    implementation("net.javacrumbs.shedlock:shedlock-provider-jdbc-template:${shedlockVersion}")
+    implementation("org.flywaydb:flyway-core")
+    runtimeOnly("org.postgresql:postgresql")
 
     // db emulation
-    implementation "org.testcontainers:testcontainers:${testContainersVersion}"
-    implementation "org.testcontainers:postgresql:${testContainersVersion}"
+    implementation("org.testcontainers:testcontainers:${testContainersVersion}")
+    implementation("org.testcontainers:postgresql:${testContainersVersion}")
 
     // tracing
-    implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
-    implementation "io.zipkin.brave:brave-instrumentation-grpc"
+    implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
+    implementation("io.zipkin.brave:brave-instrumentation-grpc")
 
     // testing
-    testImplementation "org.springframework.boot:spring-boot-starter-test:"
-    testImplementation "org.testcontainers:junit-jupiter:${testContainersVersion}"
+    testImplementation("org.springframework.boot:spring-boot-starter-test:")
+    testImplementation("org.testcontainers:junit-jupiter:${testContainersVersion}")
 }
 
 test {

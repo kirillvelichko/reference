@@ -12,9 +12,7 @@ version "SNAPSHOT"
 sourceCompatibility = '17'
 
 compileJava {
-    options.compilerArgs = [
-            '-Xlint:deprecation'
-    ]
+    options.compilerArgs << '-Xlint:deprecation'
 }
 
 repositories {
@@ -25,15 +23,16 @@ dependencies {
     implementation platform(SpringBootPlugin.BOM_COORDINATES)
     implementation platform("org.springframework.cloud:spring-cloud-dependencies:2021.0.5")
 
-    implementation "org.springframework.boot:spring-boot-starter-web:"
-    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.kafka:spring-kafka")
 
     // tracing
-    implementation "org.springframework.cloud:spring-cloud-starter-sleuth"
-    implementation "io.zipkin.brave:brave-instrumentation-grpc"
+    implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
+    implementation("io.zipkin.brave:brave-instrumentation-grpc")
 
     // testing
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 test {
