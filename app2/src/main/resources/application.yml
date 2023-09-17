@@ -1,6 +1,9 @@
 spring:
   application:
     name: App2
+  kafka:
+    topics:
+      message: topic_name
 
 logging.level:
   root: INFO

@@ -41,6 +41,9 @@ dependencies {
     implementation("org.testcontainers:testcontainers:${testContainersVersion}")
     implementation("org.testcontainers:postgresql:${testContainersVersion}")
 
+    // kafka broker emulation
+    implementation("org.testcontainers:kafka:${testContainersVersion}")
+
     // tracing
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
     implementation("io.zipkin.brave:brave-instrumentation-grpc")
