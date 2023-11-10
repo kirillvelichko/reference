@@ -1,6 +1,7 @@
 package my.project.integration.kafka.producer;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -15,8 +16,9 @@ public class MessageProducer {
     @Value("${spring.kafka.topics.message}")
     private String topic;
 
+    @SneakyThrows
     public void sendMessage() {
-        kafkaTemplate.send(topic, "Kafka message");
+        kafkaTemplate.send(topic, "Kafka message").get();
     }
 }
 
