@@ -4,3 +4,7 @@
 # gradle
 .gradle
 build
+
+# vscode
+.vscode
+bin

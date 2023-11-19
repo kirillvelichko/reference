@@ -6,7 +6,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Nonnull;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
@@ -24,7 +23,7 @@ public class FutureExecutor {
             }
 
             @Override
-            public void onFailure(@Nonnull Throwable t) {
+            public void onFailure(Throwable t) {
                 completableFuture.completeExceptionally(t);
             }
         };
