@@ -1,8 +1,6 @@
-# Blueprint
+### Template for Spring Boot Application
 
-Template for a Java microservice application based on Spring Boot.
-
-### app1
+#### app1
 - rest client
 - grpc client
   - blocking stub
@@ -13,7 +11,7 @@ Template for a Java microservice application based on Spring Boot.
 - integration tests
   - spring mock rest server
 
-### app2
+#### app2
 - rest api
 - grpc api
 - kafka
