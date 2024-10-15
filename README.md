@@ -1,5 +1,3 @@
-### Template for Spring Boot Application
-
 #### app1
 - rest client
 - grpc client
